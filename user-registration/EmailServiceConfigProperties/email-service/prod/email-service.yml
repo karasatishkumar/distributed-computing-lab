@@ -13,8 +13,8 @@ spring:
       userRegistered: USER_REGISTERED_TOPIC
   mail:
     host: smtp.gmail.com
-    port: 587
-    username: theadventuretrips.mail
+    port: 25
+    username: theadventuretrips.mail@gmail.com
     password: f117b2irene
     properties.mail.smtp:
       auth: true
