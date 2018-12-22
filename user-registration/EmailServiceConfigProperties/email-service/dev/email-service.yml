@@ -15,7 +15,7 @@ spring:
     host: smtp.gmail.com
     port: 25
     username: theadventuretrips.mail@gmail.com
-    password: f117b2irene
+    password: hugamihqztmfqkrm
     properties.mail.smtp:
       auth: true
       starttls.enable: true
