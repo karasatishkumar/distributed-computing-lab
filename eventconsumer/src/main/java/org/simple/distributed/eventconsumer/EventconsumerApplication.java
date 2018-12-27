@@ -1,18 +1,16 @@
-package org.simple.distributed.eventproducer;
+package org.simple.distributed.eventconsumer;
 
-import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
-@EnableBatchProcessing
 @EnableScheduling
-public class EventproducerApplication {
+public class EventconsumerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EventproducerApplication.class, args);
+		SpringApplication.run(EventconsumerApplication.class, args);
 	}
-	
+
 }
 
