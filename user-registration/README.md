@@ -55,11 +55,13 @@ Configuration files need to be checked in to git. Config Server reads the config
 #### Test Microservice
 Once each micro service is setup and started correctly, you can test the complete flow by
 1. Create a new user by calling url – POST http://localhost:8081/register
+    
     `{
        "id": 1,
        "userName": "karasatishkumar@gmail.com",
        "password": "password"
      }`
+     
 2. Verify that the new user is created.
 3. You can also verify the user by calling – GET http://localhost:8081/member 
 4. Verify that registration success email was received at your email address
