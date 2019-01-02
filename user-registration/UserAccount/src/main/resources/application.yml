@@ -1,7 +1,11 @@
 eureka:
+  instance:
+    hostname: $(ipconfig getifaddr en0)
+    port: 8761
+
   client:
     registryFetchIntervalSeconds: 1
     serviceUrl:
-      defaultZone: http://192.168.0.5:8761/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
     register-with-eureka: false
     fetch-registry: false
