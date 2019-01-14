@@ -8,9 +8,17 @@ spring:
     username: sa
     password:
   kafka:
-    bootstrap-servers: 192.168.1.7:9092
+    bootstrap-servers: 10.138.176.82:9092
     topic:
       userRegistered: USER_REGISTERED_TOPIC
+  mail:
+    host: smtp.gmail.com
+    port: 25
+    username: theadventuretrips.mail@gmail.com
+    password: hugamihqztmfqkrm
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
 security:
   basic:
     enabled: false
