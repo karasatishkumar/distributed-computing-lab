@@ -14,7 +14,7 @@ https://github.com/karasatishkumar/streaming-lab/wiki/Install-Apache-Kafka-in-Do
 
 We need to set KAFKA_ADVERTISED_HOST_NAME to the docker machine IP otherwise the Kafka broker is not visible and our micro services cannot connect to Kafka broker. We need to start kafka using the following command.
     
-    docker run -d --name kafka --network kafka-net --publish 9092:9092 --publish 7203:7203 --env KAFKA_ADVERTISED_HOST_NAME=$(ipconfig getifaddr en0) --env ZOOKEEPER_IP=zookeeper ches/kafka
+    docker run -d --name kafka --network kafka-net --publish 9092:9092 --publish 7203:7203 --env KAFKA_ADVERTISED_HOST_NAME=192.168.1.5 --env ZOOKEEPER_IP=zookeeper ches/kafka
 
 KAFKA_ADVERTISED_HOST_NAME is the machine IP on which you want to setup kafka.
 

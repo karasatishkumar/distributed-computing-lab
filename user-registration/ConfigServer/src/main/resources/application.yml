@@ -7,4 +7,15 @@ spring:
         git:
           uri: https://github.com/karasatishkumar/streaming-lab.git/
           search-paths:
-              - "user-registration/EmailServiceConfigProperties/{application}/{profile}"
+              - "user-registration/ConfigProperties/{application}/{profile}"
+
+eureka:
+  instance:
+   hostname: discovery-service
+   port: 8761
+
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+    register-with-eureka: true
+    fetch-registry: true

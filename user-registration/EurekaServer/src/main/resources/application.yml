@@ -1,6 +1,6 @@
 eureka:
   instance:
-   hostname: $(ipconfig getifaddr en0)
+   hostname: discovery-service
    port: 8761
 
   client:

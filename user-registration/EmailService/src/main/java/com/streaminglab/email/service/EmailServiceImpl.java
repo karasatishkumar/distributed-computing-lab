@@ -23,7 +23,6 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public void sendSimpleMessage(UserDTO input) {
         try {
-
             Mail newMail = new Mail();
             newMail.setTo(input.getUserName());
             newMail.setSubject("Registration Success");
