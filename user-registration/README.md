@@ -18,7 +18,7 @@ To make this developer friendly, we have made use of docker for run all the serv
 
 1. Clone the source code of the forked one.
 
-    git clone https://github.com/karasatishkumar/streaming-lab.git
+    `git clone https://github.com/karasatishkumar/streaming-lab.git`
 
 2. Go to the user-registration folder.
 
@@ -57,23 +57,24 @@ To make this developer friendly, we have made use of docker for run all the serv
 
 #### Service Registry (EurekaServer)
 
-    - Check
-        - http://localhost:8761/
+Check the following URL for all the registered services.
+ 
+  `http://localhost:8761/`
 
 #### Test Application
-    Once each micro service is setup and started correctly, you can test the complete flow by
-    1. Create a new user by calling url – POST http://localhost:8081/register
+Once each micro service is setup and started correctly, you can test the complete flow by
+1. Create a new user by calling url – POST `http://localhost:8081/register`
 
-        `{
-           "id": 1,
-           "userName": "karasatishkumar@gmail.com",
-           "password": "password"
-         }`
-     
-    2. Verify that the new user is created.
-    3. You can also verify the user by calling – GET http://localhost:8081/member
-    4. Verify that registration success email was received at your email address
+    `{`
+       `"id": 1,`
+       `"userName": "karasatishkumar@gmail.com",`
+       `"password": "password"`
+     `}`
+
+2. Verify that the new user is created.
+3. You can also verify the user by calling – GET `http://localhost:8081/member`
+4. Verify that registration success email was received at your email address
 
 #### Contribution
 
-    Please raise issues and give code pull requests to improve the application.
+Please raise issues and give code pull requests to improve the application.
