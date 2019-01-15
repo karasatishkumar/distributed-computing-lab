@@ -1,67 +1,79 @@
 # user-registration (spring-kafka-microservice)
-This is a repository for building a Spring Boot microservice(user-registration) using Eureka, Spring Config and Apache Kafka. 
+
+    This is a repository for building a Spring Boot microservice(user-registration) using Eureka, Spring Config and Apache Kafka.
 User registration happens via a microservice which puts the user information to database as well as kafka queue. Email service pics the information from queue and sends a registration success mail.
+To make this developer friendly, we have made use of docker for run all the services
 
 #### Prerequisite
-- Java 1.8
-- Kafka
-- docker 
 
-#### Kafka
-Follow the following article to setup kafka.
+    - Java 1.8
+    - Kafka
+    - Docker
+    - Maven
+    - Git
 
-https://github.com/karasatishkumar/streaming-lab/wiki/Install-Apache-Kafka-in-Docker-Container
+#### Running the Application
 
-We need to set KAFKA_ADVERTISED_HOST_NAME to the docker machine IP otherwise the Kafka broker is not visible and our micro services cannot connect to Kafka broker. We need to start kafka using the following command.
-    
-    docker run -d --name kafka --network kafka-net --publish 9092:9092 --publish 7203:7203 --env KAFKA_ADVERTISED_HOST_NAME=192.168.1.5 --env ZOOKEEPER_IP=zookeeper ches/kafka
+    1. Fork the project
 
-KAFKA_ADVERTISED_HOST_NAME is the machine IP on which you want to setup kafka.
+    1. Clone the source code of the forked one.
 
+        `git clone https://github.com/karasatishkumar/streaming-lab.git`
+
+    2. Go to the user-registration folder.
+
+        `cd user-registration`
+
+    3. Modify the IP address in the following files. In case of Mac use the IP address, but windows and linux users can use IP address as localhost.
+
+        1. ConfigProperties/email-service/dev/email-service.yml
+
+            `bootstrap-servers: 192.168.43.77:9092`
+
+        2. ConfigProperties/user-service/dev/user-service.yml
+
+            `bootstrap-servers: 192.168.43.77:9092`
+
+        3. docker-compose.yml
+
+            `KAFKA_ADVERTISED_HOST_NAME: 192.168.43.77`
+
+    4. Update SMTP UserName and Password in user-registration/ConfigProperties/email-service/dev/email-service.yml
+
+        `username: xxx@xxx.com`
+        `password: xxxxxx`
+
+    5. Compile the code
+
+        `mvn clean install -Dmaven.test.skip=true`
+
+    6. Bring up the docker container with applications
+
+        `docker-compose up --build`
+
+    7. To remove the container
+
+        `docker-compose down`
 
 #### Service Registry (EurekaServer)
-- Build/Run
-  - mvn clean install
-  - java –jar target/EurekaServer-0.0.1-SNAPSHOT.jar
-- Check
-  - http://localhost:8761/
 
-#### Email Service Config
-Configuration files need to be checked in to git. Config Server reads the configurations from git repository.  
-  
-#### Config Server (ConfigServer)
-  - Update properties 
-    - SET **search-paths & git-url** in /spring-kafka-microservice/ConfigServer/src/main/resources/application.yml
-    - SET **USERNAME** in spring-kafka-microservice/EmailServiceConfigProperties/email-service/dev/email-service.yml
-    - SET **PASSWORD** in spring-kafka-microservice/EmailServiceConfigProperties/email-service/dev/email-service.yml
-  - Build/Run
-    - mvn clean install
-    - java –jar target/ConfigServer-0.0.1-SNAPSHOT.jar
-- Check
-    - http://localhost:8888/email-service/dev
+    - Check
+        - http://localhost:8761/
 
-#### User Service (UserAccount)
-- Run
-  - mvn clean install
-  - java -jar target/UserAccount-0.0.1-SNAPSHOT.jar
-- Check
-  - http://localhost:8081/member -- expect 0 records returned
+#### Test Application
+    Once each micro service is setup and started correctly, you can test the complete flow by
+    1. Create a new user by calling url – POST http://localhost:8081/register
 
-#### Email Service (EmailService)
-- Run
-  - mvn clean install
-  - java -jar target/EmailService-0.0.1-SNAPSHOT.jar
-  
-#### Test Microservice
-Once each micro service is setup and started correctly, you can test the complete flow by
-1. Create a new user by calling url – POST http://localhost:8081/register
-    
-    `{
-       "id": 1,
-       "userName": "karasatishkumar@gmail.com",
-       "password": "password"
-     }`
+        `{
+           "id": 1,
+           "userName": "karasatishkumar@gmail.com",
+           "password": "password"
+         }`
      
-2. Verify that the new user is created.
-3. You can also verify the user by calling – GET http://localhost:8081/member 
-4. Verify that registration success email was received at your email address
+    2. Verify that the new user is created.
+    3. You can also verify the user by calling – GET http://localhost:8081/member
+    4. Verify that registration success email was received at your email address
+
+#### Contribution
+
+    Please raise issues and give code pull requests to improve the application.
