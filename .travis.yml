@@ -3,7 +3,9 @@ language: java
 jdk:
   - oraclejdk8
 
-script: mvn clean install -Dmaven.test.skip=true
+script: 
+  - cd user-registration
+  - mvn clean install -Dmaven.test.skip=true
 
 notifications:
   email:
