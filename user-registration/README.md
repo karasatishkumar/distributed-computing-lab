@@ -1,4 +1,5 @@
 # user-registration (spring-kafka-microservice)
+[![Build Status](https://travis-ci.org/karasatishkumar/streaming-lab.svg?branch=master)](https://travis-ci.org/karasatishkumar/streaming-lab)
 
 This is a repository for building a Spring Boot microservice(user-registration) using Eureka, Spring Config and Apache Kafka.
 User registration happens via a microservice which puts the user information to database as well as kafka queue. Email service pics the information from queue and sends a registration success mail.
