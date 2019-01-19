@@ -10,5 +10,6 @@ script:
 notifications:
   email:
     - karasatishkumar@gmail.com
+    - prasad1250@gmail.com
   on_success: always
   on_failure: always
