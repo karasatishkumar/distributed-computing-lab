@@ -1,0 +1,175 @@
+version: '2.2'
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    restart: always
+    ports:
+      - 2181:2181
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    restart: always
+    ports:
+      - 9092:9092
+    depends_on:
+      - zookeeper
+    links:
+      - zookeeper:zookeeper
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: 192.168.1.9
+      KAFKA_ADVERTISED_PORT: 9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_CREATE_TOPICS: "TEST_TOPIC:4:1"
+
+  eureka-server:
+    build: eureka-server
+    image: karasatishkumar/eureka-server
+    container_name: eureka-server
+    restart: always
+    depends_on:
+      - kafka
+    ports:
+      - 8761:8761
+
+  config-server:
+    build: config-server
+    image: karasatishkumar/config-server
+    container_name: config-server
+    restart: always
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+    ports:
+      - 8888:8888
+
+  producer-one:
+    build: producer-one
+    image: karasatishkumar/producer-one
+    container_name: producer-one
+    restart: always
+    depends_on:
+      config-server:
+        condition: service_healthy
+    ports:
+      - 8085:8085
+    links:
+      - eureka-server:eureka-server
+
+  producer-two:
+    build: producer-two
+    image: karasatishkumar/producer-two
+    container_name: producer-two
+    restart: always
+    depends_on:
+      config-server:
+        condition: service_healthy
+    ports:
+      - 8082:8082
+    links:
+      - eureka-server:eureka-server
+
+  producer-three:
+    build: producer-three
+    image: karasatishkumar/producer-three
+    container_name: producer-three
+    restart: always
+    depends_on:
+      config-server:
+        condition: service_healthy
+    ports:
+      - 8083:8083
+    links:
+      - eureka-server:eureka-server
+
+  producer-four:
+    build: producer-four
+    image: karasatishkumar/producer-four
+    container_name: producer-four
+    restart: always
+    depends_on:
+      config-server:
+        condition: service_healthy
+    ports:
+      - 8084:8084
+    links:
+      - eureka-server:eureka-server
+
+  consumer-one:
+    build: consumer-one
+    image: karasatishkumar/consumer-one
+    container_name: consumer-one
+    restart: always
+    depends_on:
+      config-server:
+        condition: service_healthy
+    ports:
+      - 8071:8071
+    links:
+      - eureka-server:eureka-server
+
+    consumer-two:
+      build: consumer-two
+      image: karasatishkumar/consumer-two
+      container_name: consumer-two
+      restart: always
+      depends_on:
+        config-server:
+          condition: service_healthy
+      ports:
+        - 8072:8072
+      links:
+        - eureka-server:eureka-server
+
+    consumer-three:
+      build: consumer-three
+      image: karasatishkumar/consumer-three
+      container_name: consumer-three
+      restart: always
+      depends_on:
+        config-server:
+          condition: service_healthy
+      ports:
+        - 8073:8073
+      links:
+        - eureka-server:eureka-server
+
+    consumer-four:
+      build: consumer-four
+      image: karasatishkumar/consumer-four
+      container_name: consumer-four
+      restart: always
+      depends_on:
+        config-server:
+          condition: service_healthy
+      ports:
+        - 8074:8074
+      links:
+        - eureka-server:eureka-server
+
+    consumer-five:
+      build: consumer-five
+      image: karasatishkumar/consumer-five
+      container_name: consumer-five
+      restart: always
+      depends_on:
+        config-server:
+          condition: service_healthy
+      ports:
+        - 8075:8075
+      links:
+        - eureka-server:eureka-server
+
+    consumer-six:
+      build: consumer-six
+      image: karasatishkumar/consumer-six
+      container_name: consumer-six
+      restart: always
+      depends_on:
+        config-server:
+          condition: service_healthy
+      ports:
+        - 8076:8076
+      links:
+        - eureka-server:eureka-server
