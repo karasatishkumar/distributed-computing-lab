@@ -109,67 +109,67 @@ services:
     links:
       - eureka-server:eureka-server
 
-    consumer-two:
-      build: consumer-two
-      image: karasatishkumar/consumer-two
-      container_name: consumer-two
-      restart: always
-      depends_on:
-        config-server:
-          condition: service_healthy
-      ports:
-        - 8072:8072
-      links:
-        - eureka-server:eureka-server
+  consumer-two:
+    build: consumer-two
+    image: karasatishkumar/consumer-two
+    container_name: consumer-two
+    restart: always
+    depends_on:
+      config-server:
+        condition: service_healthy
+    ports:
+      - 8072:8072
+    links:
+      - eureka-server:eureka-server
 
-    consumer-three:
-      build: consumer-three
-      image: karasatishkumar/consumer-three
-      container_name: consumer-three
-      restart: always
-      depends_on:
-        config-server:
-          condition: service_healthy
-      ports:
-        - 8073:8073
-      links:
-        - eureka-server:eureka-server
+  consumer-three:
+    build: consumer-three
+    image: karasatishkumar/consumer-three
+    container_name: consumer-three
+    restart: always
+    depends_on:
+      config-server:
+        condition: service_healthy
+    ports:
+      - 8073:8073
+    links:
+      - eureka-server:eureka-server
 
-    consumer-four:
-      build: consumer-four
-      image: karasatishkumar/consumer-four
-      container_name: consumer-four
-      restart: always
-      depends_on:
-        config-server:
-          condition: service_healthy
-      ports:
-        - 8074:8074
-      links:
-        - eureka-server:eureka-server
+  consumer-four:
+    build: consumer-four
+    image: karasatishkumar/consumer-four
+    container_name: consumer-four
+    restart: always
+    depends_on:
+      config-server:
+        condition: service_healthy
+    ports:
+      - 8074:8074
+    links:
+      - eureka-server:eureka-server
 
-    consumer-five:
-      build: consumer-five
-      image: karasatishkumar/consumer-five
-      container_name: consumer-five
-      restart: always
-      depends_on:
-        config-server:
-          condition: service_healthy
-      ports:
-        - 8075:8075
-      links:
-        - eureka-server:eureka-server
+  consumer-five:
+    build: consumer-five
+    image: karasatishkumar/consumer-five
+    container_name: consumer-five
+    restart: always
+    depends_on:
+      config-server:
+        condition: service_healthy
+    ports:
+      - 8075:8075
+    links:
+      - eureka-server:eureka-server
 
-    consumer-six:
-      build: consumer-six
-      image: karasatishkumar/consumer-six
-      container_name: consumer-six
-      restart: always
-      depends_on:
-        config-server:
-          condition: service_healthy
-      ports:
-        - 8076:8076
-      links:
-        - eureka-server:eureka-server
+  consumer-six:
+    build: consumer-six
+    image: karasatishkumar/consumer-six
+    container_name: consumer-six
+    restart: always
+    depends_on:
+      config-server:
+        condition: service_healthy
+    ports:
+      - 8076:8076
+    links:
+      - eureka-server:eureka-server
